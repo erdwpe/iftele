@@ -2,6 +2,7 @@
   "version": 2,
   "routes": [
     { "src": "/", "dest": "/api/index.js" },
+      { "src": "/api/price-alert", "dest": "/api/price-alert.js" },
     { "src": "/api/sendMessage", "dest": "/api/sendMessage.js" },
     { "src": "/(.*)", "status": 404, "dest": "/view/404.html" }
   ],
