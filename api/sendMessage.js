@@ -1,5 +1,15 @@
-// api/sendMessage.js
+import fs from 'fs';
+import path from 'path';
+
 export default async function handler(req, res) {
+  // Kalau parameter ?page=html => kirim file HTML
+  if (req.query.page === 'html') {
+    const filePath = path.join(process.cwd(), 'view', 'index.html');
+    const html = fs.readFileSync(filePath, 'utf8');
+    res.setHeader('Content-Type', 'text/html');
+    return res.status(200).send(html);
+  }
+
   const { key, text } = req.query;
 
   // Cek API key sederhana

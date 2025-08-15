@@ -5,5 +5,15 @@
       "src": "/api/sendMessage",
       "dest": "/api/sendMessage.js"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/noon",
+      "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/api/evening",
+      "schedule": "0 13 * * *"
+    }
   ]
 }
