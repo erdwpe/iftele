@@ -2,12 +2,9 @@
   "version": 2,
   "routes": [
     {
+      "src": "/", "dest": "/view/index.html" ,
       "src": "/api/sendMessage",
       "dest": "/api/sendMessage.js"
-    },
-    {
-      "src": "/view/(.*)",
-      "dest": "/view/$1"
     }
   ],
   "crons": [
