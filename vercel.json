@@ -4,6 +4,10 @@
     {
       "src": "/api/sendMessage",
       "dest": "/api/sendMessage.js"
+    },
+    {
+      "src": "/view/(.*)",
+      "dest": "/view/$1"
     }
   ],
   "crons": [
