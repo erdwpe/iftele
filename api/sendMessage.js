@@ -1,30 +1,36 @@
-// file: api/sendMessage.js
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
+  const { key, chatId, message } = req.query;
+
+  // 🔹 Ganti ini dengan API Key rahasia kamu
+  const API_KEY = process.env.MY_SECRET_KEY || "SECRET123";
+
+  // Cek API Key
+  if (key !== API_KEY) {
+    return res.status(403).json({ ok: false, error: "Forbidden - Invalid API Key" });
   }
 
-  const { token, chatId, text } = req.body;
-
-  if (!token || !chatId || !text) {
-    return res.status(400).json({ error: 'Missing parameters' });
+  // Cek parameter
+  if (!chatId || !message) {
+    return res.status(400).json({ ok: false, error: "chatId and message are required" });
   }
+
+  // Token bot Telegram
+  const token = process.env.TELEGRAM_TOKEN || "ISI_TOKEN_BOT_KAMU";
+  const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage`;
 
   try {
-    const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage`;
-    const response = await fetch(telegramUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const telegramRes = await fetch(telegramUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         chat_id: chatId,
-        text
+        text: message
       })
     });
 
-    const data = await response.json();
+    const data = await telegramRes.json();
     return res.status(200).json(data);
-
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
+  } catch (err) {
+    return res.status(500).json({ ok: false, error: err.message });
   }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "telegram-bot-backend",
+  "name": "telegram-sender",
   "version": "1.0.0",
-  "main": "api/sendMessage.js",
+  "license": "MIT",
   "type": "module"
 }
