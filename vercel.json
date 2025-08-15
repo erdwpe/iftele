@@ -1,8 +1,9 @@
 {
   "version": 2,
   "routes": [
+        { "src": "/", "dest": "/api/index.js" },
+
     {
-      "src": "/", "dest": "/view/index.html" ,
       "src": "/api/sendMessage",
       "dest": "/api/sendMessage.js"
     }
