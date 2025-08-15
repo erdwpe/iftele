@@ -3,7 +3,7 @@
   "routes": [
     { "src": "/", "dest": "/api/index.js" },
     { "src": "/api/sendMessage", "dest": "/api/sendMessage.js" },
-    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+    { "src": "/(.*)", "status": 404, "dest": "/view/404.html" }
   ],
   "crons": [
     {
