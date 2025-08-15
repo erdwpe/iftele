@@ -1,3 +1,4 @@
+export default async function handler(req, res) {
   const { key, text } = req.query;
 
   // Cek API key sederhana
@@ -26,3 +27,4 @@
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+}
