@@ -1,27 +1,23 @@
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
+  const text = "Halo, ini pesan dari backend Vercel 🚀";
 
-  const { message } = req.body;
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
   try {
-    const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage`;
-    const response = await fetch(telegramUrl, {
+    const tgResponse = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: chatId,
-        text: message
+        text: text
       })
     });
 
-    const data = await response.json();
-    return res.status(200).json(data);
+    const data = await tgResponse.json();
+    res.status(200).json(data);
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 }
