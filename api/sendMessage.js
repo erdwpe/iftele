@@ -1,7 +1,6 @@
 export default async function handler(req, res) {
   const { key, text } = req.query;
 
-  // Cek API key sederhana
   if (key !== process.env.MY_SECRET_KEY) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
