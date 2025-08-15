@@ -1,9 +1,9 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/sendMessage.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/api/sendMessage", "dest": "/sendMessage.js" }
+    {
+      "src": "api/sendMessage.js",
+      "use": "@vercel/node"
+    }
   ]
 }

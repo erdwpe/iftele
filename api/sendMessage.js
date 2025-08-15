@@ -1,12 +1,18 @@
 export default async function handler(req, res) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  const text = "Halo, ini pesan dari backend Vercel 🚀";
-
-  const url = `https://api.telegram.org/bot${token}/sendMessage`;
+  if (req.method !== 'POST') {
+    return res.status(405).json({ ok: false, error: 'Method Not Allowed' });
+  }
 
   try {
-    const tgResponse = await fetch(url, {
+    const { token, chatId, text } = req.body;
+
+    if (!token || !chatId || !text) {
+      return res.status(400).json({ ok: false, error: 'Missing parameters' });
+    }
+
+    const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage`;
+
+    const telegramRes = await fetch(telegramUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -15,9 +21,9 @@ export default async function handler(req, res) {
       })
     });
 
-    const data = await tgResponse.json();
-    res.status(200).json(data);
+    const data = await telegramRes.json();
+    return res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ ok: false, error: error.message });
   }
 }
