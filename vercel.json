@@ -13,6 +13,10 @@
     {
       "path": "/api/evening",
       "schedule": "0 13 * * *"
+    },
+    {
+      "path": "/api/price-alert",
+      "schedule": "*/15 * * * *"
     }
   ]
 }
