@@ -4,6 +4,6 @@
     { "src": "api/sendMessage.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" }
+    { "src": "/api/sendMessage", "dest": "/sendMessage.js" }
   ]
 }
