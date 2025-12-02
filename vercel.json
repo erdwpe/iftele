@@ -6,15 +6,5 @@
     { "src": "/api/noon", "dest": "/api/noon.js" },
     { "src": "/api/evening", "dest": "/api/evening.js" },
     { "src": "/(.*)", "status": 404, "dest": "/view/404.html" }
-  ],
-  "crons": [
-    {
-      "path": "/api/noon",
-      "schedule": "0 5 * * *"
-    },
-    {
-      "path": "/api/evening",
-      "schedule": "0 13 * * *"
-    }
   ]
 }
